@@ -50,6 +50,7 @@ function ResetBoard(){
             cells[(4*i)+j].innerText=board[i][j];
         }
     }
+    result.innerText = "";
     giveColor(board);
 }
 
