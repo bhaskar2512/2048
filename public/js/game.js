@@ -2,8 +2,19 @@ const block = document.querySelectorAll('td');
 const page = document.querySelectorAll('body');
 const cells = document.querySelectorAll('td');
 const result = document.querySelector('#result');
+
 function generateRandom(max){
     return Math.floor(Math.random() * max);
+}
+
+function giveColor(board){
+    for(var i=0;i<4;i++){
+        for(var j=0;j<4;j++){
+            cells[(4*i)+j].className = '';
+            var cla = "_" + board[i][j];
+            cells[(4*i)+j].classList.add(cla);
+        }
+    }
 }
 
 function ResetBoard(){
@@ -39,7 +50,7 @@ function ResetBoard(){
             cells[(4*i)+j].innerText=board[i][j];
         }
     }
-
+    giveColor(board);
 }
 
 class Stack {
@@ -81,7 +92,7 @@ function transformLogic(matrix){
         var r=[0,0,0,0];
         for(var j=0;j<4;j++){
             if(matrix[i][j]!=0){
-                if(st.empty()){
+                if(st.empty()==true){
                     st.push([matrix[i][j],0]);
                 }else if(st.top()[0]==matrix[i][j] && st.top()[1]==0){
                     st.pop();st.push([2*matrix[i][j],1]);
@@ -113,6 +124,25 @@ function update2048(matrix,d){
         return matrix;
 }
 
+function equality(a,b){
+    for(var i=0;i<4;i++){
+        for(var j=0;j<4;j++){
+            if(a[i][j]!=b[i][j])return false;
+        }
+    }
+    return true;
+}
+
+function check(matrix){
+    var left = update2048(matrix,"l");
+    var right = update2048(matrix,"r"); 
+    var up = update2048(matrix,"u");
+    var down = update2048(matrix,"d");
+    if(equality(left,matrix) && equality(right,matrix) && equality(up,matrix) && equality(down,matrix))return true;
+    return false; 
+}
+
+
 
 page.forEach((b)=>{
     b.addEventListener('keydown',()=>{
@@ -134,21 +164,27 @@ page.forEach((b)=>{
                 if(updatedBoard[i][j]==0)possible.push((4*i)+j);
             }
         }
-        var firstIdx = generateRandom(parseInt(possible.length));
-        var boardIdx = possible[firstIdx];
-        var n = generateRandom(2);
-        var num = nums[n];
-        var row = parseInt(parseInt(boardIdx)/4);
-        var col = parseInt(boardIdx)%4;
-        updatedBoard[row][col] = num;
+        if(parseInt(possible.length)>0 && equality(updatedBoard,board)==false){
+            var firstIdx = generateRandom(parseInt(possible.length));
+            var boardIdx = possible[firstIdx];
+            var n = generateRandom(2);
+            var num = nums[n];
+            var row = parseInt(parseInt(boardIdx)/4);
+            var col = parseInt(boardIdx)%4;
+            updatedBoard[row][col] = num;
+        }
         var won = false;
+        var lost = check(updatedBoard);
         for(var i=0;i<4;i++){
             for(var j=0;j<4;j++){
                 cells[(4*i)+j].innerText=updatedBoard[i][j];
-                if(updatedBoard[i][j]==16)won=true;
+                if(updatedBoard[i][j]==2048)won=true;
             }
         }
+        giveColor(updatedBoard);
         if(won)result.innerText = "You Won!";
+        else if(lost)result.innerText = "You Lost!";
+        
     });
 })
 

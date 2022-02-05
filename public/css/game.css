@@ -1,4 +1,19 @@
-
+        #btn{
+            color:whitesmoke;
+            background-color: black;
+            width: 80px;
+            height:40px;
+            font-size: 25px;
+            border-radius: 5px;
+            margin:10px;
+            outline: none;
+        }
+        h1{
+            margin:3px;
+        }
+        h3{
+            margin:2px;
+        }
         div{
             display: flex;
             justify-content: center;
@@ -6,6 +21,9 @@
         }
         table{
             border-spacing: 0px;
+            border: 1px solid grey;
+            border-radius: 5px;
+            margin: 5px;
         }
         td{
           width: 80px;
@@ -13,5 +31,51 @@
           font-size: xx-large;
           text-align:center;
           border: 5px solid grey;
-          
+          font-family: 'Rowdies', cursive;
+          color: rgb(73, 71, 71);
+        }
+        ._0{
+            color:rgb(207, 206, 206);
+            background-color: rgb(207, 206, 206);
+        }
+        ._2{
+            background-color: yellow;
+        }
+        ._4{
+            background-color: yellowgreen;
+        }
+        ._8{
+            background-color: lightcoral;
+        }
+        ._16{
+            color: whitesmoke;
+            background-color: orange;
+        }
+        ._32{
+            color: whitesmoke;
+            background-color: rgb(255, 115, 0);
+        }
+        ._64{
+            color: whitesmoke;
+            background-color: rgb(255, 72, 0);
+        }
+        ._128{
+            color: whitesmoke;
+            background-color: red;
+        }
+        ._256{
+            color: whitesmoke;
+            background-color: skyblue;
+        }
+        ._512{
+            color: whitesmoke;
+            background-color: rgb(98, 111, 221);
+        }
+        ._1024{
+            color: whitesmoke;
+            background-color: rgb(46, 46, 173);
+        }
+        ._2048{
+            color: whitesmoke;
+            background-color: blue;
         }
