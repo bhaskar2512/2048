@@ -1,0 +1,17 @@
+
+        div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        table{
+            border-spacing: 0px;
+        }
+        td{
+          width: 80px;
+          height: 80px;
+          font-size: xx-large;
+          text-align:center;
+          border: 5px solid grey;
+          
+        }
